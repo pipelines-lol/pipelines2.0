@@ -1,5 +1,5 @@
 {
-    "name": "database",
+    "name": "@pipelines/database",
     "license": "MIT",
     "version": "0.0.0",
     "main": "./index.ts",

@@ -1,5 +1,6 @@
 "use client";
-import { Button } from "@repo/ui/button";
+import { Button } from "@pipelines/ui/button";
+import { trpc } from "../trpc";
 import {
   Card,
   CardContent,
@@ -7,7 +8,7 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@repo/ui/card";
+} from "@pipelines/ui/card";
 import Link from "next/link";
 
 const LINKS = [
@@ -35,6 +36,15 @@ const LINKS = [
 ];
 
 export default function Page(): JSX.Element {
+  const { data: test, isLoading, error } = trpc.test;
+  if (test) {
+    console.log("Data: ", test);
+  } else if (isLoading) {
+    console.log("loading...");
+  } else {
+    console.log("error: ", error);
+  }
+
   return (
     <main className="flex flex-col items-center justify-between min-h-screen p-24">
       <div className="grid mb-32 text-center lg:max-w-5xl lg:w-full lg:mb-0 lg:grid-cols-4 lg:text-left space-x-3">

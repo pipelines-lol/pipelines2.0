@@ -1,13 +1,13 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons"
-import { DayPicker } from "react-day-picker"
+import * as React from "react";
+import { ChevronLeftIcon, ChevronRightIcon } from "@radix-ui/react-icons";
+import { DayPicker } from "react-day-picker";
 
-import { cn } from "@repo/ui/lib/utils"
-import { buttonVariants } from "@repo/ui/button"
+import { cn } from "@pipelines/ui/lib/utils";
+import { buttonVariants } from "@repo/ui/button";
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>
+export type CalendarProps = React.ComponentProps<typeof DayPicker>;
 
 function Calendar({
   className,
@@ -20,9 +20,11 @@ function Calendar({
       showOutsideDays={showOutsideDays}
       className={cn("ui-p-3", className)}
       classNames={{
-        months: "ui-flex ui-flex-col sm:ui-flex-row ui-space-y-4 sm:ui-space-x-4 sm:ui-space-y-0",
+        months:
+          "ui-flex ui-flex-col sm:ui-flex-row ui-space-y-4 sm:ui-space-x-4 sm:ui-space-y-0",
         month: "ui-space-y-4",
-        caption: "ui-flex ui-justify-center ui-pt-1 ui-relative ui-items-center",
+        caption:
+          "ui-flex ui-justify-center ui-pt-1 ui-relative ui-items-center",
         caption_label: "ui-text-sm ui-font-medium",
         nav: "ui-space-x-1 ui-flex ui-items-center",
         nav_button: cn(
@@ -60,13 +62,17 @@ function Calendar({
         ...classNames,
       }}
       components={{
-        IconLeft: ({ ...props }) => <ChevronLeftIcon className="ui-h-4 ui-w-4" />,
-        IconRight: ({ ...props }) => <ChevronRightIcon className="ui-h-4 ui-w-4" />,
+        IconLeft: ({ ...props }) => (
+          <ChevronLeftIcon className="ui-h-4 ui-w-4" />
+        ),
+        IconRight: ({ ...props }) => (
+          <ChevronRightIcon className="ui-h-4 ui-w-4" />
+        ),
       }}
       {...props}
     />
-  )
+  );
 }
-Calendar.displayName = "Calendar"
+Calendar.displayName = "Calendar";
 
-export { Calendar }
+export { Calendar };
