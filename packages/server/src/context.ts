@@ -5,7 +5,7 @@ export async function createContext(opts: CreateNextContextOptions) {
     const session = await getSession({ req: opts.req });
    
     return {
-      session,
+      ...opts
     };
 }
 

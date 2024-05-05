@@ -36,7 +36,7 @@ const LINKS = [
 ];
 
 export default function Page(): JSX.Element {
-  const { data: test, isLoading, error } = trpc.test;
+  const { data: test, isLoading, error } = trpc.hello.useQuery();
   if (test) {
     console.log("Data: ", test);
   } else if (isLoading) {

@@ -11,17 +11,17 @@
     },
     "dependencies": {
         "@pipelines/database": "workspace:*",
-        "@pipelines/api": "workspace:*",
         "@pipelines/ui": "workspace:*",
-        "@tanstack/react-query": "5.32.1",
-        "@trpc/client": "11.0.0-rc.364",
-        "@trpc/react-query": "11.0.0-rc.364",
-        "@trpc/server": "11.0.0-rc.364",
+        "@pipelines/server": "workspace:*",
+        "@tanstack/react-query": "^4.3.9",
+        "@trpc/client": "^10.45.2",
+        "@trpc/react-query": "^10.45.2",
+        "@trpc/server": "^10.45.2",
         "next": "^14.0.4",
         "next-themes": "^0.3.0",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "superjson": "^2.2.1",
+        "superjson": "1.9.1",
         "zod": "^3.22.4"
     },
     "devDependencies": {
