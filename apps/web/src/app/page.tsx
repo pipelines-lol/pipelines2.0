@@ -36,13 +36,13 @@ const LINKS = [
 ];
 
 export default function Page(): JSX.Element {
-  const { data: test, isLoading, error } = trpc.hello.useQuery();
+  const { data: test, isLoading, error } = trpc.test.hello.useQuery();
   if (test) {
     console.log("Data: ", test);
   } else if (isLoading) {
     console.log("loading...");
   } else {
-    console.log("error: ", error);
+    console.log("error: ", error?.message);
   }
 
   return (

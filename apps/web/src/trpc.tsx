@@ -15,7 +15,7 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
       transformer: superjson,
       links: [
         httpBatchLink({
-          url: `http://localhost:3000/trpc`,
+          url: `http://localhost:8787/trpc`,
           async headers() {
             return {
               Authorization: `auth`,

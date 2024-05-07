@@ -1,12 +1,22 @@
-import type { CreateNextContextOptions } from '@trpc/server/adapters/next';
-import { getSession } from 'next-auth/react';
+import type { inferAsyncReturnType } from "@trpc/server";
+import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 
-export async function createContext(opts: CreateNextContextOptions) {
-    const session = await getSession({ req: opts.req });
-   
+import type { HonoContext } from "../config";
+
+export function createTRPCContextFromHonoContext(c: HonoContext) {
+  return (opts: FetchCreateContextFnOptions) => {
+    /*
+     * Here we spawn a new database connection for each request.
+     * This is because we can't share a connection between requests in a Cloudflare Worker.
+     */
+
     return {
-      ...opts
+      ...opts,
+      env: c.env,
     };
+  };
 }
 
-export type Context = Awaited<ReturnType<typeof createContext>>;
+export type TRPCContext = inferAsyncReturnType<
+  ReturnType<typeof createTRPCContextFromHonoContext>
+>;
