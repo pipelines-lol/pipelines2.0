@@ -5,6 +5,7 @@ node_modules
 .pnp
 .pnp.js
 
+.env
 # testing
 coverage
 
@@ -31,9 +32,10 @@ yarn-error.log*
 
 # wrangler
 .wrangler
-
+wrangler.toml
 # turbo
 .turbo
 
+.dev.vars
 # ui
 dist/

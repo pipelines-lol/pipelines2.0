@@ -1,6 +1,7 @@
 import { Hono } from 'hono'
 import { cors } from 'hono/cors';
 import { trpc } from './src/middlewares/trpc'
+import { db } from './src/middlewares/prisma'
 
 const app = new Hono()
 
@@ -15,6 +16,7 @@ app.get('/', (c) => {
     ]
   })
 )
+.use("*", db)
 .use("/trpc/*", trpc)
 
 export default app

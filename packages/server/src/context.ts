@@ -10,8 +10,10 @@ export function createTRPCContextFromHonoContext(c: HonoContext) {
      * This is because we can't share a connection between requests in a Cloudflare Worker.
      */
 
+    const db = c.get("db")
     return {
       ...opts,
+      db,
       env: c.env,
     };
   };

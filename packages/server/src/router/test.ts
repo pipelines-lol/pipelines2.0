@@ -3,6 +3,7 @@ import { publicProcedure } from '../trpc';
 
 export const testRouter = router({
     hello: publicProcedure.query(async ({ctx}) => {
-        return "hello world";
+        const users = await ctx.db.profile.findMany()
+        return users;
     })
 })
