@@ -3,108 +3,96 @@ generator client {
 }
 
 datasource db {
-  provider  = "mongodb"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
 }
 
-// User and Profile section
-model User {
+model admins {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  profileId String?
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  email     String   @unique(map: "email_1")
+  password  String
+  updatedAt DateTime @db.Date
 }
 
-model Profile {
-  id        String       @id @default(auto()) @map("_id") @db.ObjectId
+model companies {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  Employees      String[]
+  v              Int?     @map("__v")
+  description    String
+  displayName    String
+  interns        String[]
+  logo           String?
+  name           String
+  postCompanies  Json?
+  prevCompanies  Json?
+  ratedEmployees String[]
+  /// Multiple data types found: Float: 5.8%, Int: 94.2% out of 86 sampled entries
+  rating         Json?
+  schoolTally    Json?
+  /// Multiple data types found: Float: 12.8%, Int: 87.2% out of 86 sampled entries
+  tenure         Json?
+}
+
+model emails {
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  v           Int?      @map("__v")
+  createdAt   DateTime? @db.Date
+  earlyAccess Boolean?
+  email       String
+  updatedAt   DateTime? @db.Date
+}
+
+model experiences {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model offers {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+}
+
+model profiles {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  v         Int      @map("__v")
+  anonymous Boolean
+  created   Boolean
+  createdAt DateTime @db.Date
   firstName String?
   lastName  String?
-  userName  String?
-  linkedin  String?
-  pfp       String?
-  position  String?
-  location  String?
-  anonymous Boolean?
-  school    String?      @db.ObjectId
-  created   Boolean?
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
-  pipeline  Experience[]
-  offers    Offer[]
+  linkedin  String
+  location  String
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  offers    Json?
+  pfp       String
+  pipeline  Json?
+  position  String
+  /// Multiple data types found: String: 86.5%, String (ObjectId): 13.5% out of 89 sampled entries
+  school    Json?
+  updatedAt DateTime @db.Date
+  userId    String
+  username  String
 }
 
-model Experience {
-  profile      Profile   @relation(fields: [id], references: [id])
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId
-  companyId    String    @db.ObjectId
-  companyName  String
-  displayName  String
-  title        String
-  startDate    DateTime
-  endDate      DateTime?
-  isIndefinite Boolean
-  rating       Int
-  logo         String
-}
-
-model Offer {
-  profile      Profile   @relation(fields: [id], references: [id])
-  id           String    @id @default(auto()) @map("_id") @db.ObjectId
-  companyId    String    @db.ObjectId
-  companyName  String
-  displayName  String
-  startDate    DateTime
-  endDate      DateTime?
-  isIndefinite Boolean
-}
-
-// Company and school Section
-model Company {
+model schools {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  logo           String
-  displayName    String
-  description    String
-  rating         Int?
-  tenure         Int?
-  prevCompanies  Json?
-  postCompanies  Json?
-  Employees      String[] @db.ObjectId
-  interns        String[] @db.ObjectId
-  ratedEmployees String[] @db.ObjectId
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-}
-
-model School {
-  id             String   @id @default(auto()) @map("_id") @db.ObjectId
-  name           String
-  domains        String[]
-  state_province String
-  country        String
   alpha_two_code String
-  webpages       String[]
-  schoolTally    Json?
-  rank           Int
+  companyTally   Json?
+  country        String
+  domains        String[]
   logo           String
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
+  name           String
+  rank           Int
+  schoolTally    Json?
+  state_province String?
+  web_pages      String[]
 }
 
-// Dashboard Section
-model Admin {
+model users {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String
-  password  String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Email {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  email     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  v         Int      @map("__v")
+  createdAt DateTime @db.Date
+  email     String   @unique(map: "email_1")
+  profileId String
+  updatedAt DateTime @db.Date
 }
