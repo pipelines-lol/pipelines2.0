@@ -20,7 +20,7 @@ const BreadcrumbList = React.forwardRef<
     ref={ref}
     className={cn(
       "ui-flex ui-flex-wrap ui-items-center ui-gap-1.5 ui-break-words ui-text-sm ui-text-muted-foreground sm:ui-gap-2.5",
-      className
+      className,
     )}
     {...props}
   />
@@ -97,7 +97,7 @@ const BreadcrumbEllipsis = ({
     aria-hidden="true"
     className={cn(
       "ui-flex ui-h-9 ui-w-9 ui-items-center ui-justify-center",
-      className
+      className,
     )}
     {...props}
   >

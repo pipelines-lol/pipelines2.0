@@ -22,7 +22,7 @@ const SheetOverlay = React.forwardRef<
   <SheetPrimitive.Overlay
     className={cn(
       "ui-fixed ui-inset-0 ui-z-50 ui-bg-black/80 ui- data-[state=open]:ui-animate-in data-[state=closed]:ui-animate-out data-[state=closed]:ui-fade-out-0 data-[state=open]:ui-fade-in-0",
-      className
+      className,
     )}
     {...props}
     ref={ref}
@@ -46,7 +46,7 @@ const sheetVariants = cva(
     defaultVariants: {
       side: "right",
     },
-  }
+  },
 );
 
 interface SheetContentProps
@@ -81,7 +81,7 @@ const SheetHeader = ({
   <div
     className={cn(
       "ui-flex ui-flex-col ui-space-y-2 ui-text-center sm:ui-text-left",
-      className
+      className,
     )}
     {...props}
   />
@@ -95,7 +95,7 @@ const SheetFooter = ({
   <div
     className={cn(
       "ui-flex ui-flex-col-reverse sm:ui-flex-row sm:ui-justify-end sm:ui-space-x-2",
-      className
+      className,
     )}
     {...props}
   />

@@ -8,7 +8,7 @@ function Skeleton({
     <div
       className={cn(
         "ui-animate-pulse ui-rounded-md ui-bg-primary/10",
-        className
+        className,
       )}
       {...props}
     />

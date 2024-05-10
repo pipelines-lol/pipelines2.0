@@ -23,7 +23,7 @@ const ToggleGroup = React.forwardRef<
     ref={ref}
     className={cn(
       "ui-flex ui-items-center ui-justify-center ui-gap-1",
-      className
+      className,
     )}
     {...props}
   >
@@ -50,7 +50,7 @@ const ToggleGroupItem = React.forwardRef<
           variant: context.variant || variant,
           size: context.size || size,
         }),
-        className
+        className,
       )}
       {...props}
     >

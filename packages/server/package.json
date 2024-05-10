@@ -42,7 +42,7 @@
   "eslintConfig": {
     "root": true,
     "extends": [
-      "@pipelines/eslint-config/base"
+      "@pipelines/eslint-config"
     ]
   }
 }

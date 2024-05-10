@@ -29,7 +29,7 @@ function Calendar({
         nav: "ui-space-x-1 ui-flex ui-items-center",
         nav_button: cn(
           buttonVariants({ variant: "outline" }),
-          "ui-h-7 ui-w-7 ui-bg-transparent ui-p-0 ui-opacity-50 hover:ui-opacity-100"
+          "ui-h-7 ui-w-7 ui-bg-transparent ui-p-0 ui-opacity-50 hover:ui-opacity-100",
         ),
         nav_button_previous: "ui-absolute ui-left-1",
         nav_button_next: "ui-absolute ui-right-1",
@@ -42,11 +42,11 @@ function Calendar({
           "ui-relative ui-p-0 ui-text-center ui-text-sm focus-within:ui-relative focus-within:ui-z-20 [&:has([aria-selected])]:ui-bg-accent [&:has([aria-selected].day-outside)]:ui-bg-accent/50 [&:has([aria-selected].day-range-end)]:ui-rounded-r-md",
           props.mode === "range"
             ? "[&:has(>.day-range-end)]:ui-rounded-r-md [&:has(>.day-range-start)]:ui-rounded-l-md first:[&:has([aria-selected])]:ui-rounded-l-md last:[&:has([aria-selected])]:ui-rounded-r-md"
-            : "[&:has([aria-selected])]:ui-rounded-md"
+            : "[&:has([aria-selected])]:ui-rounded-md",
         ),
         day: cn(
           buttonVariants({ variant: "ghost" }),
-          "ui-h-8 ui-w-8 ui-p-0 ui-font-normal aria-selected:ui-opacity-100"
+          "ui-h-8 ui-w-8 ui-p-0 ui-font-normal aria-selected:ui-opacity-100",
         ),
         day_range_start: "ui-day-range-start",
         day_range_end: "ui-day-range-end",

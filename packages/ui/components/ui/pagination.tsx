@@ -56,7 +56,7 @@ const PaginationLink = ({
         variant: isActive ? "outline" : "ghost",
         size,
       }),
-      className
+      className,
     )}
     {...props}
   />
@@ -103,7 +103,7 @@ const PaginationEllipsis = ({
     aria-hidden
     className={cn(
       "ui-flex ui-h-9 ui-w-9 ui-items-center ui-justify-center",
-      className
+      className,
     )}
     {...props}
   >

@@ -3,17 +3,17 @@
 import type { Context, Input } from "hono";
 
 export type Bindings = {
-    DATABASE_URL: string;
-    DIRECT_URL: string;
-}
+  DATABASE_URL: string;
+  DIRECT_URL: string;
+};
 
 export type Variables = {
-  db: any
-}
+  db: any;
+};
 
 export type HonoConfig = {
-    Bindings: Bindings;
-    Variables: Variables;
+  Bindings: Bindings;
+  Variables: Variables;
 };
 
 export type HonoContext<

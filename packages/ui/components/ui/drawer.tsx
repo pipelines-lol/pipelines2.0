@@ -44,7 +44,7 @@ const DrawerContent = React.forwardRef<
       ref={ref}
       className={cn(
         "ui-fixed ui-inset-x-0 ui-bottom-0 ui-z-50 ui-mt-24 ui-flex ui-h-auto ui-flex-col ui-rounded-t-[10px] ui-border ui-bg-background",
-        className
+        className,
       )}
       {...props}
     >
@@ -62,7 +62,7 @@ const DrawerHeader = ({
   <div
     className={cn(
       "ui-grid ui-gap-1.5 ui-p-4 ui-text-center sm:ui-text-left",
-      className
+      className,
     )}
     {...props}
   />
@@ -88,7 +88,7 @@ const DrawerTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "ui-text-lg ui-font-semibold ui-leading-none ui-tracking-tight",
-      className
+      className,
     )}
     {...props}
   />

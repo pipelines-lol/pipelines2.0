@@ -22,7 +22,7 @@ const DialogOverlay = React.forwardRef<
     ref={ref}
     className={cn(
       "ui-fixed ui-inset-0 ui-z-50 ui-bg-black/80 ui- data-[state=open]:ui-animate-in data-[state=closed]:ui-animate-out data-[state=closed]:ui-fade-out-0 data-[state=open]:ui-fade-in-0",
-      className
+      className,
     )}
     {...props}
   />
@@ -39,7 +39,7 @@ const DialogContent = React.forwardRef<
       ref={ref}
       className={cn(
         "ui-fixed ui-left-[50%] ui-top-[50%] ui-z-50 ui-grid ui-w-full ui-max-w-lg ui-translate-x-[-50%] ui-translate-y-[-50%] ui-gap-4 ui-border ui-bg-background ui-p-6 ui-shadow-lg ui-duration-200 data-[state=open]:ui-animate-in data-[state=closed]:ui-animate-out data-[state=closed]:ui-fade-out-0 data-[state=open]:ui-fade-in-0 data-[state=closed]:ui-zoom-out-95 data-[state=open]:ui-zoom-in-95 data-[state=closed]:ui-slide-out-to-left-1/2 data-[state=closed]:ui-slide-out-to-top-[48%] data-[state=open]:ui-slide-in-from-left-1/2 data-[state=open]:ui-slide-in-from-top-[48%] sm:ui-rounded-lg",
-        className
+        className,
       )}
       {...props}
     >
@@ -60,7 +60,7 @@ const DialogHeader = ({
   <div
     className={cn(
       "ui-flex ui-flex-col ui-space-y-1.5 ui-text-center sm:ui-text-left",
-      className
+      className,
     )}
     {...props}
   />
@@ -74,7 +74,7 @@ const DialogFooter = ({
   <div
     className={cn(
       "ui-flex ui-flex-col-reverse sm:ui-flex-row sm:ui-justify-end sm:ui-space-x-2",
-      className
+      className,
     )}
     {...props}
   />
@@ -89,7 +89,7 @@ const DialogTitle = React.forwardRef<
     ref={ref}
     className={cn(
       "ui-text-lg ui-font-semibold ui-leading-none ui-tracking-tight",
-      className
+      className,
     )}
     {...props}
   />
