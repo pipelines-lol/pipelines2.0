@@ -1,0 +1,8 @@
+{
+    "extends": "@pipelines/typescript-config/nextjs.json",
+    "type": "module",
+    "compilerOptions": {
+      "tsBuildInfoFile": "node_modules/.cache/tsbuildinfo.json"
+    },
+    "include": ["src"]
+  }
