@@ -2,8 +2,7 @@ import type { inferAsyncReturnType } from "@trpc/server";
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
 
 import type { HonoContext } from "../config";
-
-export function createTRPCContextFromHonoContext(c: HonoContext) {
+export function createTRPCContext(c: HonoContext) {
   return (opts: FetchCreateContextFnOptions) => {
     /*
      * Here we spawn a new database connection for each request.
@@ -20,5 +19,5 @@ export function createTRPCContextFromHonoContext(c: HonoContext) {
 }
 
 export type TRPCContext = inferAsyncReturnType<
-  ReturnType<typeof createTRPCContextFromHonoContext>
+  ReturnType<typeof createTRPCContext>
 >;
