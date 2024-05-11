@@ -4,7 +4,7 @@ import * as React from "react";
 import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
 import { cn } from "@pipelines/ui/lib/utils";
-import { buttonVariants } from "@repo/ui/button";
+import { buttonVariants } from "@pipelines/ui/button";
 
 const AlertDialog = AlertDialogPrimitive.Root;
 
@@ -19,7 +19,7 @@ const AlertDialogOverlay = React.forwardRef<
   <AlertDialogPrimitive.Overlay
     className={cn(
       "ui-fixed ui-inset-0 ui-z-50 ui-bg-black/80 data-[state=open]:ui-animate-in data-[state=closed]:ui-animate-out data-[state=closed]:ui-fade-out-0 data-[state=open]:ui-fade-in-0",
-      className,
+      className
     )}
     {...props}
     ref={ref}
@@ -37,7 +37,7 @@ const AlertDialogContent = React.forwardRef<
       ref={ref}
       className={cn(
         "ui-fixed ui-left-[50%] ui-top-[50%] ui-z-50 ui-grid ui-w-full ui-max-w-lg ui-translate-x-[-50%] ui-translate-y-[-50%] ui-gap-4 ui-border ui-bg-background ui-p-6 ui-shadow-lg ui-duration-200 data-[state=open]:ui-animate-in data-[state=closed]:ui-animate-out data-[state=closed]:ui-fade-out-0 data-[state=open]:ui-fade-in-0 data-[state=closed]:ui-zoom-out-95 data-[state=open]:ui-zoom-in-95 data-[state=closed]:ui-slide-out-to-left-1/2 data-[state=closed]:ui-slide-out-to-top-[48%] data-[state=open]:ui-slide-in-from-left-1/2 data-[state=open]:ui-slide-in-from-top-[48%] sm:ui-rounded-lg",
-        className,
+        className
       )}
       {...props}
     />
@@ -52,7 +52,7 @@ const AlertDialogHeader = ({
   <div
     className={cn(
       "ui-flex ui-flex-col ui-space-y-2 ui-text-center sm:ui-text-left",
-      className,
+      className
     )}
     {...props}
   />
@@ -66,7 +66,7 @@ const AlertDialogFooter = ({
   <div
     className={cn(
       "ui-flex ui-flex-col-reverse sm:ui-flex-row sm:ui-justify-end sm:ui-space-x-2",
-      className,
+      className
     )}
     {...props}
   />
@@ -119,7 +119,7 @@ const AlertDialogCancel = React.forwardRef<
     className={cn(
       buttonVariants({ variant: "outline" }),
       "ui-mt-2 sm:ui-mt-0",
-      className,
+      className
     )}
     {...props}
   />
