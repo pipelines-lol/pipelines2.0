@@ -10,9 +10,11 @@ export function createTRPCContext(c: HonoContext) {
      */
 
     const db = c.get("db");
+    const user = c.get('user-linkedin')
     return {
       ...opts,
       db,
+      user,
       env: c.env,
     };
   };

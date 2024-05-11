@@ -5,6 +5,9 @@ import type { Context, Input } from "hono";
 export type Bindings = {
   DATABASE_URL: string;
   DIRECT_URL: string;
+
+  LINKEDIN_ID: string;
+  LINKEDIN_SECRET: string;
 };
 
 export type Variables = {
