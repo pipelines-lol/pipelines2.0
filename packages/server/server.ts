@@ -10,7 +10,13 @@ const app = new Hono();
 
 app
   .get("/", (c) => {
-    return c.text("Hello Hono!");
+    return c.text(`
+      🚀 Welcome to the Pipelines API! 🌟
+
+      Thank you for accessing our API. We're excited to have you on board! If you have any questions or need assistance, feel free to reach out to our support team.
+
+      Happy coding! 🎉
+    `);
   })
   .use(
     "*",

@@ -14,6 +14,7 @@ export async function auth(c: HonoContext, next: Next) {
   })(c, next)
 }
 
+
 export const isAuthenticated = middleware((opts) => {
     const user = opts.ctx.user;
   
