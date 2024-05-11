@@ -5,6 +5,7 @@ import superjson from "superjson";
 // middleware
 import { isAuthenticated } from "./middlewares";
 
+
 export const t = initTRPC.context<TRPCContext>().create({
   transformer: superjson,
 });
@@ -16,5 +17,3 @@ export const publicProcedure = t.procedure;
 
 // user is signed-in procedure
 export const authenticatedProcedure = t.procedure.use(isAuthenticated);
-
-export const middleware = t.middleware;

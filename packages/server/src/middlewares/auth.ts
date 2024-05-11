@@ -1,10 +1,9 @@
-import { linkedinAuth } from '@hono/oauth-providers/linkedin'
+import { LinkedInUser, linkedinAuth } from '@hono/oauth-providers/linkedin'
 import { Next } from "hono";
 
 import { TRPCError } from '@trpc/server';
 import type { HonoContext } from "../../config";
-
-import { middleware } from '../trpc';
+import { BaseMiddlewareFunction } from '../types/middleware';
 
 export async function auth(c: HonoContext, next: Next) {
   return linkedinAuth({
@@ -15,20 +14,24 @@ export async function auth(c: HonoContext, next: Next) {
 }
 
 
-export const isAuthenticated = middleware((opts) => {
-    const user = opts.ctx.user;
-  
-    if (!user) {
-      throw new TRPCError({ code: "UNAUTHORIZED", message: "Not authenticated" });
-    }
-  
-    return opts.next({
-      ctx: {
-        ...opts.ctx,
-        user: {
-          ...user,
-          isAdmin: user.email?.endsWith("@knighthacks.org"),
-        },
+export const isAuthenticated: BaseMiddlewareFunction<
+  {
+    user?: Partial<LinkedInUser> | undefined
+  }
+> = async ({ ctx, next }) => {
+  const user = ctx.user;
+
+  if (!user) {
+    throw new TRPCError({ code: "UNAUTHORIZED", message: "Not authenticated" });
+  }
+
+  return next({
+    ctx: {
+      ...ctx,
+      user: {
+        ...user,
+        // isAdmin: user.email?.endsWith("@pipelines.lol"), - Possible way to have admins
       },
-    });
-});
+    },
+  });
+};
