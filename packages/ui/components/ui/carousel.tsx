@@ -7,7 +7,7 @@ import useEmblaCarousel, {
 } from "embla-carousel-react";
 
 import { cn } from "@pipelines/ui/lib/utils";
-import { Button } from "@repo/ui/button";
+import { Button } from "@pipelines/ui/button";
 
 type CarouselApi = UseEmblaCarouselType[1];
 type UseCarouselParameters = Parameters<typeof useEmblaCarousel>;
@@ -56,14 +56,14 @@ const Carousel = React.forwardRef<
       children,
       ...props
     },
-    ref,
+    ref
   ) => {
     const [carouselRef, api] = useEmblaCarousel(
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
       },
-      plugins,
+      plugins
     );
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
@@ -95,7 +95,7 @@ const Carousel = React.forwardRef<
           scrollNext();
         }
       },
-      [scrollPrev, scrollNext],
+      [scrollPrev, scrollNext]
     );
 
     React.useEffect(() => {
@@ -146,7 +146,7 @@ const Carousel = React.forwardRef<
         </div>
       </CarouselContext.Provider>
     );
-  },
+  }
 );
 Carousel.displayName = "Carousel";
 
@@ -163,7 +163,7 @@ const CarouselContent = React.forwardRef<
         className={cn(
           "ui-flex",
           orientation === "horizontal" ? "ui--ml-4" : "ui--mt-4 ui-flex-col",
-          className,
+          className
         )}
         {...props}
       />
@@ -186,7 +186,7 @@ const CarouselItem = React.forwardRef<
       className={cn(
         "ui-min-w-0 ui-shrink-0 ui-grow-0 ui-basis-full",
         orientation === "horizontal" ? "ui-pl-4" : "ui-pt-4",
-        className,
+        className
       )}
       {...props}
     />
@@ -210,7 +210,7 @@ const CarouselPrevious = React.forwardRef<
         orientation === "horizontal"
           ? "ui--left-12 ui-top-1/2 ui--translate-y-1/2"
           : "ui--top-12 ui-left-1/2 ui--translate-x-1/2 ui-rotate-90",
-        className,
+        className
       )}
       disabled={!canScrollPrev}
       onClick={scrollPrev}
@@ -239,7 +239,7 @@ const CarouselNext = React.forwardRef<
         orientation === "horizontal"
           ? "ui--right-12 ui-top-1/2 ui--translate-y-1/2"
           : "ui--bottom-12 ui-left-1/2 ui--translate-x-1/2 ui-rotate-90",
-        className,
+        className
       )}
       disabled={!canScrollNext}
       onClick={scrollNext}

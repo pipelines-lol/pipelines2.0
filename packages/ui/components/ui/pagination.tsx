@@ -6,7 +6,7 @@ import {
 } from "@radix-ui/react-icons";
 
 import { cn } from "@pipelines/ui/lib/utils";
-import { ButtonProps, buttonVariants } from "@repo/ui/button";
+import { ButtonProps, buttonVariants } from "@pipelines/ui/button";
 
 const Pagination = ({ className, ...props }: React.ComponentProps<"nav">) => (
   <nav
@@ -56,7 +56,7 @@ const PaginationLink = ({
         variant: isActive ? "outline" : "ghost",
         size,
       }),
-      className,
+      className
     )}
     {...props}
   />
@@ -103,7 +103,7 @@ const PaginationEllipsis = ({
     aria-hidden
     className={cn(
       "ui-flex ui-h-9 ui-w-9 ui-items-center ui-justify-center",
-      className,
+      className
     )}
     {...props}
   >

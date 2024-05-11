@@ -11,7 +11,7 @@ import {
 } from "react-hook-form";
 
 import { cn } from "@pipelines/ui/lib/utils";
-import { Label } from "@repo/ui/label";
+import { Label } from "@pipelines/ui/label";
 
 const Form = FormProvider;
 
@@ -23,7 +23,7 @@ type FormFieldContextValue<
 };
 
 const FormFieldContext = React.createContext<FormFieldContextValue>(
-  {} as FormFieldContextValue,
+  {} as FormFieldContextValue
 );
 
 const FormField = <
@@ -67,7 +67,7 @@ type FormItemContextValue = {
 };
 
 const FormItemContext = React.createContext<FormItemContextValue>(
-  {} as FormItemContextValue,
+  {} as FormItemContextValue
 );
 
 const FormItem = React.forwardRef<
@@ -158,7 +158,7 @@ const FormMessage = React.forwardRef<
       id={formMessageId}
       className={cn(
         "ui-text-[0.8rem] ui-font-medium ui-text-destructive",
-        className,
+        className
       )}
       {...props}
     >
