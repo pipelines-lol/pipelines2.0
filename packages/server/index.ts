@@ -1,8 +1,12 @@
-import { testRouter } from "./src/routers/test";
 import { router } from "./src/trpc";
+import { profileRouter } from "./src/routers/profile";
+import { schoolRouter } from "./src/routers/school";
+import { companyRouter } from "./src/routers/company";
 
 const appRouter = router({
-  test: testRouter,
+  profile: profileRouter,
+  school: schoolRouter,
+  company: companyRouter
 });
 
 export type AppRouter = typeof appRouter;

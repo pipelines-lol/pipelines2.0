@@ -36,7 +36,11 @@ const LINKS = [
 ];
 
 export default function Page(): JSX.Element {
-  const { data: test, isLoading, error } = trpc.test.hello.useQuery();
+  const {
+    data: test,
+    isLoading,
+    error,
+  } = trpc.profile.getRandomProfiles.useQuery({ amount: 5 });
   if (test) {
     console.log("Data: ", test);
   } else if (isLoading) {
