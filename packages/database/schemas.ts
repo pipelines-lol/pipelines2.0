@@ -55,3 +55,17 @@ export const profileSchema = z.object({
     userId:    z.string(),
     username:  z.string()
 })
+
+export const companySchema = z.object({
+    name: z.string(),
+    displayName: z.string(),
+    logo: z.string(),
+    description: z.string(),
+    rating: z.number(),
+    prevCompanies: tally.array(),
+    postCompanies: tally.array(),
+    tenure: z.number(),
+    Employees: z.string().array(),
+    interns: z.string().array(),
+    ratedEmployees: z.string().array()
+})
