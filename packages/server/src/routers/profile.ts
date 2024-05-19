@@ -48,11 +48,20 @@ export const profileRouter = router({
     updateProfile: publicProcedure
         .input(profileSchema)
         .mutation(async ({ctx, input}) => {
-            await ctx.db.update({
+            await ctx.db.profiles.update({
                 where: {
                     id: input.id
                 },
                 data: input,
+            })
+        }),
+    deleteProfile: publicProcedure
+        .input(z.object({ id: z.string()}))
+        .mutation(async ({ctx, input}) => {
+            await ctx.db.profiles.delete({
+                where: {
+                    id: input.id
+                }
             })
         })
 })
