@@ -3,8 +3,8 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@repo/ui": ["./components/ui"],
-      "@repo/ui/*": ["./components/ui/*"]
+      "@pipelines/ui": ["./components/ui"],
+      "@pipelines/ui/*": ["./components/ui/*"]
     }
   },
   "include": ["."],

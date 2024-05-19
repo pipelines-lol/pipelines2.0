@@ -1,6 +1,6 @@
 import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
-import sharedConfig from "@repo/tailwind-config";
+import sharedConfig from "@pipelines/tailwind-config";
 
 const config: Pick<
   Config,
