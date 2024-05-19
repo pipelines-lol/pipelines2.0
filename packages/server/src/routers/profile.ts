@@ -1,15 +1,16 @@
 import { z } from "zod";
-import { publicProcedure, router } from "../trpc";
+import { authenticatedProcedure, publicProcedure, router } from "../trpc";
 import { profiles } from "@prisma/client"
 import { profileSchema } from "@pipelines/database";
+import { auth } from "../middlewares";
 
 
 export const profileRouter = router({
-    getProfiles: publicProcedure
+    getProfiles: authenticatedProcedure
         .query(({ ctx }) => {
             return ctx.db.profiles.findMany()
         }),
-    getProfile: publicProcedure
+    getProfile: authenticatedProcedure
         .input(
             z.object({
                 id: z.string()
@@ -18,7 +19,7 @@ export const profileRouter = router({
         .query(({ ctx, input }) => {
             return ctx.db.profiles.findFirst({ where: { id: input.id}})
         }),
-    getRandomProfiles: publicProcedure
+    getRandomProfiles: authenticatedProcedure
         .input(
             z.object({
                 amount: z.number()
@@ -45,7 +46,7 @@ export const profileRouter = router({
             return randomProfiles;
 
         }),
-    updateProfile: publicProcedure
+    updateProfile: authenticatedProcedure
         .input(profileSchema)
         .mutation(async ({ctx, input}) => {
             await ctx.db.profiles.update({
@@ -55,7 +56,7 @@ export const profileRouter = router({
                 data: input,
             })
         }),
-    deleteProfile: publicProcedure
+    deleteProfile: authenticatedProcedure
         .input(z.object({ id: z.string()}))
         .mutation(async ({ctx, input}) => {
             await ctx.db.profiles.delete({

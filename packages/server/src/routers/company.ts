@@ -1,10 +1,9 @@
 import { z } from "zod";
-import { publicProcedure, router } from "../trpc";
-import { companies } from "@prisma/client"
+import { authenticatedProcedure, publicProcedure, router } from "../trpc";
 import { companySchema } from "@pipelines/database";
 
 export const companyRouter = router({
-    createCompany: publicProcedure
+    createCompany: authenticatedProcedure
         .input(companySchema)
         .mutation(async ({ctx, input}) => {
             await ctx.db.companies.create({
@@ -30,7 +29,7 @@ export const companyRouter = router({
                 }
             })
         }),
-    updateCompany: publicProcedure
+    updateCompany: authenticatedProcedure
         .input(z.object({
             newCompany: companySchema,
             oldCompany: companySchema
@@ -38,7 +37,7 @@ export const companyRouter = router({
         .mutation(async ({ctx, input}) => {
             // tbd
         }),
-    updateCompanies: publicProcedure
+    updateCompanies: authenticatedProcedure
         .input(z.object({
             newCompanies: companySchema.array(),
             oldCompanies: companySchema.array()
@@ -46,7 +45,7 @@ export const companyRouter = router({
         .mutation(async ({ctx, input}) => {
             // tbd
         }),
-    deleteCompanies: publicProcedure
+    deleteCompanies: authenticatedProcedure
         .input(z.object({ id: z.string()}))
         .mutation(async ({ ctx, input}) => {
             await ctx.db.companies.delete({

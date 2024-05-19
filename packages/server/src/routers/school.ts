@@ -1,9 +1,9 @@
 import { z } from "zod";
-import { publicProcedure, router } from "../trpc";
+import { authenticatedProcedure, publicProcedure, router } from "../trpc";
 import { schoolSchema } from "@pipelines/database";
 
 export const schoolRouter = router({
-    create: publicProcedure
+    create: authenticatedProcedure
         .input(schoolSchema)
         .mutation(async ({ ctx, input }) => {
             await ctx.db.schools.create({
@@ -33,7 +33,7 @@ export const schoolRouter = router({
                 }
             })
         }),
-    updateSchool: publicProcedure
+    updateSchool: authenticatedProcedure
         .input(z.object({
             newSchool: schoolSchema,
             oldSchool: schoolSchema
@@ -41,7 +41,7 @@ export const schoolRouter = router({
         .mutation(async ({ctx, input}) => {
             // tbd
         }),
-    deleteSchool: publicProcedure
+    deleteSchool: authenticatedProcedure
         .input(z.object({ id: z.string()}))
         .mutation(async ({ctx, input}) => {
             await ctx.db.schools.delete({
