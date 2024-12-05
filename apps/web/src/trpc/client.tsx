@@ -2,7 +2,7 @@
 import { createTRPCReact } from "@trpc/react-query";
 import type { AppRouter } from "@pipelines/server";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { httpBatchLink } from "@trpc/react-query";
+import { unstable_httpBatchStreamLink } from "@trpc/client";
 import { useState } from "react";
 import superjson from "superjson";
 
@@ -12,18 +12,17 @@ export function TRPCProvider(props: { children: React.ReactNode }) {
   const [queryClient] = useState(() => new QueryClient());
   const [trpcClient] = useState(() =>
     trpc.createClient({
-      transformer: superjson,
       links: [
-        httpBatchLink({
-          url: `http://localhost:8787/trpc`,
+        unstable_httpBatchStreamLink({
+          transformer: superjson,
+          url: "http://localhost:8787/trpc",
           async headers() {
-            return {
-              Authorization: `auth`,
-            };
+            const h = new Headers();
+            return h;
           },
         }),
       ],
-    }),
+    })
   );
 
   return (

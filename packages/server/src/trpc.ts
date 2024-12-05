@@ -5,7 +5,6 @@ import superjson from "superjson";
 // middleware
 import { isAuthenticated } from "./middlewares";
 
-
 export const t = initTRPC.context<TRPCContext>().create({
   transformer: superjson,
 });

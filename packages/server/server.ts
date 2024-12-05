@@ -1,5 +1,6 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { csrf } from "hono/csrf";
 
 // middleware
 import { trpc } from "./src/middlewares/trpc";
@@ -21,11 +22,18 @@ app
   .use(
     "*",
     cors({
+      origin: ["http://localhost:3000", "*"],
+    })
+  )
+  .use(
+    "*",
+    csrf({
       origin: ["http://localhost:3000"],
-    }),
+    })
   )
   .use("*", db)
-  .use("*", auth)
+  .use("*")
+  //.use("*", auth)
   .use("/trpc/*", trpc);
 
 export default app;
