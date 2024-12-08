@@ -6,7 +6,6 @@ import { createTRPCContext } from "../context";
 import { appRouter } from "../../index";
 
 export async function trpc(c: HonoContext, next: Next) {
-  console.log("Check trpc server is being called");
   return trpcServer({
     router: appRouter,
     onError({ error }) {

@@ -2,7 +2,7 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Hero from "~/../public/Hero.svg";
-import Timeline from "./Timeline";
+import Timeline from "../Timeline";
 
 export default function About() {
   const ref = useRef(null);

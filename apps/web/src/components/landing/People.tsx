@@ -1,7 +1,7 @@
 "use server";
-import DiscoverButton from "./DiscoverButton";
+import DiscoverButton from "../DiscoverButton";
 import { trpc } from "~/trpc/server";
-import { PipelineCard } from "./PipelineCard";
+import { PipelineCard } from "../PipelineCard";
 import type { profiles } from "@prisma/client";
 
 type Experience = {
@@ -18,8 +18,6 @@ type Experience = {
 
 export default async function People() {
   const profiles = await trpc.profile.getRandomProfiles.query({ amount: 5 });
-
-  console.log("Result: ", profiles);
 
   return (
     <>

@@ -32,9 +32,6 @@ export const PipelineCard = async ({
   if (!profileId || profileId === "") return;
   if (!pfp || pfp === "") return;
 
-  const { pfp: pfpLink } = await trpc.pfp.getPfp.query({ id: profileId });
-  console.log("Link: ", pfpLink);
-
   return (
     <div className="flex flex-col items-center justify-center gap-3">
       <ConditionalLink

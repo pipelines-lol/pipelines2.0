@@ -1,5 +1,5 @@
 import bg from "~/../public/hero.png";
-import CTAButton from "./CTAButton";
+import CTAButton from "../CTAButton";
 export default function Hero() {
   return (
     <section

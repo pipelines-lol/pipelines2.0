@@ -9,7 +9,6 @@ export function createTRPCContext(
   const user = c.get("user-linkedin");
   const s3 = c.get("s3");
   const BUCKET_NAME = c.get("BUCKET_NAME");
-  console.log("Check context is being called");
   return {
     ...opts,
     db,

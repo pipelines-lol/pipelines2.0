@@ -1,10 +1,10 @@
-import Hero from "~/components/hero";
-import Offerings from "~/components/offerings";
-import People from "~/components/people";
-import About from "~/components/About";
-import SlidingImages from "~/components/Marquee";
-import Testimonies from "~/components/Testimonies";
-import CTA from "~/components/CTA";
+import Hero from "~/components/landing/Hero";
+import Offerings from "~/components/landing/Offerings";
+import People from "~/components/landing/People";
+import About from "~/components/landing/About";
+import SlidingImages from "~/components/landing/Marquee";
+import Testimonies from "~/components/landing/Testimonies";
+import CTA from "~/components/landing/CTA";
 
 export default function Page(): JSX.Element {
   return (
