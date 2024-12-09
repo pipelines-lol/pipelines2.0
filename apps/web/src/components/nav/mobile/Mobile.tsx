@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import CTAButton from "../../CTAButton";
+import { signIn, signOut } from "next-auth/react";
 
 const OVERLAY_CLASS =
   "absolute left-0 top-16 z-50 flex h-96 w-full flex-col items-center justify-center bg-black/90 bg-opacity-5 shadow-md backdrop-blur-3xl backdrop-filter md:hidden";
@@ -38,14 +39,12 @@ interface MobileNavigationBarProps {
         image?: string | null | undefined;
       }
     | undefined;
-  dispatch: React.Dispatch<any>;
   toggleMobileNavbar: (state: boolean) => void;
   mobileNavbar: boolean;
 }
 
 const MobileNavigationBar: React.FC<MobileNavigationBarProps> = ({
   user,
-  dispatch,
   toggleMobileNavbar,
   mobileNavbar,
 }) => {
@@ -114,9 +113,9 @@ const MobileNavigationBar: React.FC<MobileNavigationBarProps> = ({
               </MobileNavLink>
 
               {!user && (
-                <>
-                  <CTAButton href={"/"} text="Login" />
-                </>
+                <button onClick={() => signIn("linkedin")}>
+                  <CTAButton text="Login" />
+                </button>
               )}
 
               {user && (
@@ -141,8 +140,7 @@ const MobileNavigationBar: React.FC<MobileNavigationBarProps> = ({
 
                   <button
                     onClick={() => {
-                      dispatch({ type: "LOGOUT" });
-                      localStorage.setItem("user", "null");
+                      signOut();
                       router.push("/");
                     }}
                     className="mt-4 text-xl font-light uppercase text-white"

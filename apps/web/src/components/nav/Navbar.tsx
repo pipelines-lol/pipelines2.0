@@ -7,10 +7,6 @@ import { useSession } from "next-auth/react";
 const Navbar = () => {
   const [mobileNavbar, setMobileNavbar] = useState(false);
 
-  const dummy = (val: Object) => {
-    console.log(val);
-  };
-
   const session = useSession();
   console.log("User: ", session.data?.user);
   console.log("Session: ", session.data);
@@ -23,7 +19,6 @@ const Navbar = () => {
         <NonMobileNavbar pfp={""} user={session.data?.user} />
         <MobileNavigationBar
           user={session.data?.user}
-          dispatch={dummy}
           toggleMobileNavbar={setMobileNavbar}
           mobileNavbar={mobileNavbar}
         />
