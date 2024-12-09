@@ -4,6 +4,7 @@ import { ThemeProvider, NextAuthProvider } from "src/components/providers";
 import { AuthProvider } from "./Providers";
 import "./globals.css";
 import { NavbarWrapper } from "~/components/NavbarWrapper";
+import Footer from "~/components/Footer";
 import type { Session } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -38,6 +39,7 @@ export default function RootLayout({
             >
               <NavbarWrapper />
               {children}
+              <Footer />
             </ThemeProvider>
           </AuthProvider>
         </NextAuthProvider>
