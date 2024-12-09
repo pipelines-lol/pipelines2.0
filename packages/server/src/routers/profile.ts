@@ -26,6 +26,10 @@ export const profileRouter = router({
     .query(async ({ ctx, input }) => {
       const profiles = await ctx.db.profiles.findMany();
 
+      if (profiles.length == 0) {
+        return [];
+      }
+
       const randomProfiles: profiles[] = [];
       while (randomProfiles.length < input.amount) {
         const randomIndex = Math.floor(Math.random() * profiles.length);

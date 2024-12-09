@@ -2,7 +2,7 @@
 import { useState } from "react";
 import NonMobileNavbar from "./mobile/NonMobile";
 import MobileNavigationBar from "./mobile/Mobile";
-import { signIn, signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const Navbar = () => {
   const [mobileNavbar, setMobileNavbar] = useState(false);
@@ -13,6 +13,7 @@ const Navbar = () => {
 
   const session = useSession();
   console.log("User: ", session.data?.user);
+  console.log("Session: ", session.data);
 
   return (
     <>
