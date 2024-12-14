@@ -2,6 +2,13 @@ import type { AppRouter } from "@pipelines/server";
 import { createTRPCClient, unstable_httpBatchStreamLink } from "@trpc/client";
 import { headers } from "next/headers";
 import superjson from "superjson";
+import { getServerSession } from "next-auth/next";
+import { authOptions } from "~/app/api/auth/[...nextauth]/route";
+import type { Session } from "next-auth";
+
+interface NewSession extends Session {
+  accessToken: String;
+}
 
 export const trpc = createTRPCClient<AppRouter>({
   links: [
@@ -9,14 +16,11 @@ export const trpc = createTRPCClient<AppRouter>({
       transformer: superjson,
       url: "http://localhost:8787/trpc",
       async headers() {
-        const nh = headers();
-        const h = new Headers(nh);
-        h.append("origin", nh.get("x-forwarded-host") ?? "");
-        h.append("Authorization", `Bearer`);
-        h.append("Access-Control-Allow-Origin", "http://localhost:3000");
-        h.append("Access-Control-Allow-Credentials", "true");
-        h.append("Access-Control-Allow-Headers", "Content-Type");
-        h.append("Access-Control-Allow-Methods", "OPTIONS, POST, GET");
+        const session = await getServerSession(authOptions);
+        const token = (session as NewSession)?.accessToken;
+        console.log("Token: ", token);
+        const h = new Headers();
+        h.append("Authorization", `${token}`);
         return h;
       },
     }),

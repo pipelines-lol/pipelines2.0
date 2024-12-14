@@ -1,38 +1,31 @@
-import { LinkedInUser, linkedinAuth } from "@hono/oauth-providers/linkedin";
+import { linkedinAuth } from "@hono/oauth-providers/linkedin";
 import { Next } from "hono";
-
-import { TRPCError } from "@trpc/server";
+import axios from "axios";
 import type { HonoContext } from "../../config";
-import { BaseMiddlewareFunction } from "../types/middleware";
 
-export async function auth(c: HonoContext, next: Next) {
-  return linkedinAuth({
-    client_id: c.env.LINKEDIN_CLIENT_ID,
-    client_secret: c.env.LINKEDIN_CLIENT_SECRET,
-    scope: ["email", "openid", "profile"],
-  })(c, next);
-}
+export async function validateToken(c: HonoContext, next: Next) {
+  const token = c.req.header("Authorization") ?? "";
 
-type CtxProps = {
-  user: Partial<LinkedInUser>;
-};
+  try {
+    let tokenValidityBody = await axios.post(
+      "https://www.linkedin.com/oauth/v2/introspectToken",
+      {
+        token: token,
+        client_id: c.env.LINKEDIN_CLIENT_ID,
+        client_secret: c.env.LINKEDIN_CLIENT_SECRET,
+      },
+      {
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+        },
+      }
+    );
 
-export const isAuthenticated: BaseMiddlewareFunction<{
-  user?: Partial<LinkedInUser> | undefined;
-}> = async (ctx: CtxProps, next) => {
-  const user = ctx.user;
-
-  if (!user) {
-    throw new TRPCError({ code: "UNAUTHORIZED", message: "Not authenticated" });
+    c.set("isAuthenticated", tokenValidityBody?.data?.active);
+  } catch (err) {
+    c.set("isAuthenticated", false);
+    return next();
   }
 
-  return next({
-    ctx: {
-      ...ctx,
-      user: {
-        ...user,
-        // isAdmin: user.email?.endsWith("@pipelines.lol"), - Possible way to have admins
-      },
-    },
-  });
-};
+  return next();
+}

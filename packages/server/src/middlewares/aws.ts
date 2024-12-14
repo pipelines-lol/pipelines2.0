@@ -1,10 +1,6 @@
 import { Next } from "hono";
 import type { HonoContext } from "../../config";
-import {
-  S3Client,
-  PutObjectCommand,
-  GetObjectCommand,
-} from "@aws-sdk/client-s3";
+import { S3Client } from "@aws-sdk/client-s3";
 
 export async function aws(c: HonoContext, next: Next) {
   const BUCKET_NAME = c.env.BUCKET_NAME;

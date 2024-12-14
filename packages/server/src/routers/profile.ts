@@ -2,7 +2,6 @@ import { z } from "zod";
 import { authenticatedProcedure, publicProcedure, router } from "../trpc";
 import { profiles } from "@prisma/client";
 import { profileSchema } from "@pipelines/database";
-import { auth } from "../middlewares";
 
 export const profileRouter = router({
   getProfiles: publicProcedure.query(({ ctx }) => {
@@ -24,6 +23,7 @@ export const profileRouter = router({
       })
     )
     .query(async ({ ctx, input }) => {
+      console.log("Check route starts");
       const profiles = await ctx.db.profiles.findMany();
 
       if (profiles.length == 0) {

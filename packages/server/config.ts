@@ -21,6 +21,7 @@ export type Variables = {
   db: any;
   s3: any;
   BUCKET_NAME: any;
+  isAuthenticated: boolean;
 };
 
 export type HonoConfig = {

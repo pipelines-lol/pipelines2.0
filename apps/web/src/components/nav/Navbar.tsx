@@ -8,8 +8,7 @@ const Navbar = () => {
   const [mobileNavbar, setMobileNavbar] = useState(false);
 
   const session = useSession();
-  console.log("User: ", session.data?.user);
-  console.log("Session: ", session.data);
+  console.log("Session: ", session);
 
   return (
     <>

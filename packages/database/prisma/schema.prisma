@@ -8,19 +8,35 @@ datasource db {
 }
 
 model Account {
-  id                       String  @id @default(cuid()) @map("_id")
-  userId                   String  @map("user_id")
+  id                       String   @id @default(cuid()) @map("_id")
+  userId                   String   @map("user_id")
   type                     String
   provider                 String
-  providerAccountId        String  @map("provider_account_id")
-  refresh_token            String? @db.String
-  refresh_token_expires_in Int?    @db.Int
-  access_token             String? @db.String
+  providerAccountId        String   @map("provider_account_id")
+  refresh_token            String?  @db.String
+  refresh_token_expires_in Int?     @db.Int
+  access_token             String?  @db.String
   expires_at               Int?
   token_type               String?
   scope                    String?
-  id_token                 String? @db.String
+  id_token                 String?  @db.String
   session_state            String?
+  anonymous                Boolean
+  created                  Boolean
+  createdAt                DateTime @db.Date
+  firstName                String?
+  lastName                 String?
+  linkedin                 String
+  location                 String
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  offers                   Json?
+  pfp                      String
+  pipeline                 Json?
+  position                 String
+  /// Multiple data types found: String: 86.5%, String (ObjectId): 13.5% out of 89 sampled entries
+  school                   Json?
+  updatedAt                DateTime @db.Date
+  username                 String
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
@@ -103,28 +119,6 @@ model experiences {
 
 model offers {
   id String @id @default(auto()) @map("_id") @db.ObjectId
-}
-
-model profiles {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int      @map("__v")
-  anonymous Boolean
-  created   Boolean
-  createdAt DateTime @db.Date
-  firstName String?
-  lastName  String?
-  linkedin  String
-  location  String
-  /// Could not determine type: the field only had null or empty values in the sample set.
-  offers    Json?
-  pfp       String
-  pipeline  Json?
-  position  String
-  /// Multiple data types found: String: 86.5%, String (ObjectId): 13.5% out of 89 sampled entries
-  school    Json?
-  updatedAt DateTime @db.Date
-  userId    String
-  username  String
 }
 
 model schools {
