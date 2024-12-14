@@ -64,8 +64,6 @@ const NonMobileNavbar: React.FC<NonMobileNavbarProps> = ({ user, pfp }) => {
   const [hovering, setHovering] = useState(false);
   const [hovering2, setHovering2] = useState(false);
 
-  console.log("user: ", user);
-
   return (
     <div className="mx-12 hidden h-full flex-row items-center justify-center text-center md:flex">
       <Link href="/">

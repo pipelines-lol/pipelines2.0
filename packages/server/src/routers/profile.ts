@@ -23,7 +23,6 @@ export const profileRouter = router({
       })
     )
     .query(async ({ ctx, input }) => {
-      console.log("Check route starts");
       const profiles = await ctx.db.profiles.findMany();
 
       if (profiles.length == 0) {

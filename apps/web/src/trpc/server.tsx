@@ -18,7 +18,6 @@ export const trpc = createTRPCClient<AppRouter>({
       async headers() {
         const session = await getServerSession(authOptions);
         const token = (session as NewSession)?.accessToken;
-        console.log("Token: ", token);
         const h = new Headers();
         h.append("Authorization", `${token}`);
         return h;
