@@ -1,6 +1,4 @@
 import type { FetchCreateContextFnOptions } from "@trpc/server/adapters/fetch";
-import { NextApiRequest } from "next";
-import { NextApiResponse } from "next";
 
 import type { HonoContext } from "../config";
 export function createTRPCContext(

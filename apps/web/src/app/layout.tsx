@@ -3,7 +3,7 @@ import { Inter } from "next/font/google";
 import { ThemeProvider, NextAuthProvider } from "src/components/providers";
 import { AuthProvider } from "./Providers";
 import "./globals.css";
-import { NavbarWrapper } from "~/components/NavbarWrapper";
+import Navbar from "~/components/nav/Navbar";
 import Footer from "~/components/Footer";
 import type { Session } from "next-auth";
 
@@ -37,7 +37,7 @@ export default function RootLayout({
               enableSystem
               disableTransitionOnChange
             >
-              <NavbarWrapper />
+              <Navbar />
               {children}
               <Footer />
             </ThemeProvider>

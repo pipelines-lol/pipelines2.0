@@ -3,7 +3,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@pipelines/database";
 import LinkedInProvider from "next-auth/providers/linkedin";
 import type { LinkedInProfile } from "next-auth/providers/linkedin";
-import type { Session, Account, Profile, User, AuthOptions } from "next-auth";
+import type { Account, Profile, User, AuthOptions } from "next-auth";
 import { JWT } from "next-auth/jwt";
 import { AdapterUser } from "next-auth/adapters";
 

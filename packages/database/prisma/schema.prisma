@@ -34,7 +34,7 @@ model Account {
   pipeline                 Json?
   position                 String
   /// Multiple data types found: String: 86.5%, String (ObjectId): 13.5% out of 89 sampled entries
-  school                   Json?
+  school                   String[] @db.ObjectId
   updatedAt                DateTime @db.Date
   username                 String
 
@@ -44,16 +44,6 @@ model Account {
   @@map("accounts")
 }
 
-model Session {
-  id           String   @id @default(cuid()) @map("_id")
-  sessionToken String   @unique @map("session_token")
-  userId       String   @map("user_id")
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  @@map("sessions")
-}
-
 model User {
   id            String    @id @default(cuid()) @map("_id")
   name          String?
@@ -61,7 +51,6 @@ model User {
   emailVerified DateTime? @map("email_verified")
   image         String?
   accounts      Account[]
-  sessions      Session[]
 
   @@map("users")
 }
@@ -134,12 +123,3 @@ model schools {
   state_province String?
   web_pages      String[]
 }
-
-// model users {
-//   id        String   @id @default(auto()) @map("_id") @db.ObjectId
-//   v         Int      @map("__v")
-//   createdAt DateTime @db.Date
-//   email     String   @unique(map: "email_1")
-//   profileId String
-//   updatedAt DateTime @db.Date
-// }
