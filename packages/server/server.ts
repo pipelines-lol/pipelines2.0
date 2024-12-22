@@ -1,10 +1,12 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
+import { csrf } from "hono/csrf";
+import { jwt } from "hono/jwt";
 
 // middleware
 import { trpc } from "./src/middlewares/trpc";
 import { db } from "./src/middlewares/prisma";
-import { auth } from "./src/middlewares/auth";
+import { validateToken } from "./src/middlewares/auth";
 
 const app = new Hono();
 
@@ -22,10 +24,17 @@ app
     "*",
     cors({
       origin: ["http://localhost:3000"],
-    }),
+    })
   )
+  .use(
+    "*",
+    csrf({
+      origin: ["http://localhost:3000"],
+    })
+  )
+  .use("*", validateToken)
   .use("*", db)
-  .use("*", auth)
+  .use("*")
   .use("/trpc/*", trpc);
 
 export default app;

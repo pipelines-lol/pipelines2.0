@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { ThemeProvider } from "src/components/providers";
+import { ThemeProvider, NextAuthProvider } from "src/components/providers";
+import { AuthProvider } from "./Providers";
 import "./globals.css";
+import Navbar from "~/components/nav/Navbar";
+import Footer from "~/components/Footer";
+import type { Session } from "next-auth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,22 +14,35 @@ export const metadata: Metadata = {
   description: "Track, visualize, and explore your career path.",
 };
 
+interface RootLayoutProps {
+  children: React.ReactNode;
+  params: {
+    session: Session; // Optional session object
+    [key: string]: any; // Any additional props
+  };
+}
+
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}): JSX.Element {
+  params: { session, ...params },
+}: RootLayoutProps): JSX.Element {
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
+        <NextAuthProvider session={session}>
+          <AuthProvider>
+            <ThemeProvider
+              attribute="class"
+              defaultTheme="system"
+              enableSystem
+              disableTransitionOnChange
+            >
+              <Navbar />
+              {children}
+              <Footer />
+            </ThemeProvider>
+          </AuthProvider>
+        </NextAuthProvider>
       </body>
     </html>
   );

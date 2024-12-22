@@ -1,4 +1,4 @@
-import { MiddlewareFunction, ProcedureParams } from "@trpc/server";
+import { AnyMiddlewareFunction, ProcedureParams } from "@trpc/server";
 
 // type for having encapsulated middleware
 // @see https://stackoverflow.com/questions/73763655/trpc-how-to-encapsulate-middleware - Encapsulating Middleware
@@ -26,4 +26,4 @@ import { MiddlewareFunction, ProcedureParams } from "@trpc/server";
 export type BaseMiddlewareFunction<$ContextIn> = MiddlewareFunction<
   { _ctx_out: $ContextIn } & ProcedureParams,
   ProcedureParams
->
+>;

@@ -11,6 +11,6 @@ export async function trpc(c: HonoContext, next: Next) {
     onError({ error }) {
       console.error(error);
     },
-    createContext: createTRPCContext(c),
+    createContext: createTRPCContext,
   })(c, next);
 }

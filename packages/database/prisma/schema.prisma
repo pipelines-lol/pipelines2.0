@@ -7,6 +7,64 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Account {
+  id                       String   @id @default(cuid()) @map("_id")
+  userId                   String   @map("user_id")
+  type                     String
+  provider                 String
+  providerAccountId        String   @map("provider_account_id")
+  refresh_token            String?  @db.String
+  refresh_token_expires_in Int?     @db.Int
+  access_token             String?  @db.String
+  expires_at               Int?
+  token_type               String?
+  scope                    String?
+  id_token                 String?  @db.String
+  session_state            String?
+  anonymous                Boolean
+  created                  Boolean
+  createdAt                DateTime @db.Date
+  firstName                String?
+  lastName                 String?
+  linkedin                 String
+  location                 String
+  /// Could not determine type: the field only had null or empty values in the sample set.
+  offers                   Json?
+  pfp                      String
+  pipeline                 Json?
+  position                 String
+  /// Multiple data types found: String: 86.5%, String (ObjectId): 13.5% out of 89 sampled entries
+  school                   String[] @db.ObjectId
+  updatedAt                DateTime @db.Date
+  username                 String
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+  @@map("accounts")
+}
+
+model User {
+  id            String    @id @default(cuid()) @map("_id")
+  name          String?
+  email         String    @unique
+  emailVerified DateTime? @map("email_verified")
+  image         String?
+  accounts      Account[]
+
+  @@map("users")
+}
+
+model VerificationToken {
+  id         String   @id @default(cuid()) @map("_id")
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@unique([identifier, token])
+  @@map("verification_tokens")
+}
+
 model admins {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   v         Int      @map("__v")
@@ -52,28 +110,6 @@ model offers {
   id String @id @default(auto()) @map("_id") @db.ObjectId
 }
 
-model profiles {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int      @map("__v")
-  anonymous Boolean
-  created   Boolean
-  createdAt DateTime @db.Date
-  firstName String?
-  lastName  String?
-  linkedin  String
-  location  String
-  /// Could not determine type: the field only had null or empty values in the sample set.
-  offers    Json?
-  pfp       String
-  pipeline  Json?
-  position  String
-  /// Multiple data types found: String: 86.5%, String (ObjectId): 13.5% out of 89 sampled entries
-  school    Json?
-  updatedAt DateTime @db.Date
-  userId    String
-  username  String
-}
-
 model schools {
   id             String   @id @default(auto()) @map("_id") @db.ObjectId
   alpha_two_code String
@@ -86,13 +122,4 @@ model schools {
   schoolTally    Json?
   state_province String?
   web_pages      String[]
-}
-
-model users {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  v         Int      @map("__v")
-  createdAt DateTime @db.Date
-  email     String   @unique(map: "email_1")
-  profileId String
-  updatedAt DateTime @db.Date
 }
